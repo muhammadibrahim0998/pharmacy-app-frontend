@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Table, Button, Modal, Form, Row, Col } from 'react-bootstrap'
 import axios from 'axios'
+import { API_BASE_URL } from '../../api/axois'
 
 const Clinicians = () => {
   const [clinicians, setClinicians] = useState([])
@@ -17,7 +18,7 @@ const Clinicians = () => {
   const [editId, setEditId] = useState(null)
 
   const fetchClinicians = async () => {
-    const res = await axios.get('http://localhost:5000/api/clinicians')
+    const res = await axios.get(`${API_BASE_URL}/api/clinicians`)
     setClinicians(res.data)
   }
 
@@ -27,9 +28,9 @@ const Clinicians = () => {
 
   const handleSave = async () => {
     if (editId) {
-      await axios.put(`http://localhost:5000/api/clinicians/${editId}`, formData)
+      await axios.put(`${API_BASE_URL}/api/clinicians/${editId}`, formData)
     } else {
-      await axios.post('http://localhost:5000/api/clinicians', formData)
+      await axios.post(`${API_BASE_URL}/api/clinicians`, formData)
     }
     setShow(false)
     setEditId(null)
@@ -52,7 +53,7 @@ const Clinicians = () => {
   }
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/clinicians/${id}`)
+    await axios.delete(`${API_BASE_URL}/api/clinicians/${id}`)
     fetchClinicians()
   }
 

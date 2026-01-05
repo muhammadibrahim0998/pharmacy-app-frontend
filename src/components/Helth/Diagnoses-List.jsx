@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Button, Modal, Form, Badge } from 'react-bootstrap'
 import axios from 'axios'
+import { API_BASE_URL } from '../../api/axois'
 
 const DiagnosisList = () => {
   const [diagnoses, setDiagnoses] = useState([])
@@ -15,7 +16,7 @@ const DiagnosisList = () => {
   // ✅ Fetch diagnosis list
   const fetchDiagnoses = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/diagnoses')
+      const res = await axios.get(`${API_BASE_URL}/api/diagnoses`)
       setDiagnoses(res.data)
     } catch (err) {
       console.error('❌ Error fetching diagnoses:', err)
@@ -30,9 +31,9 @@ const DiagnosisList = () => {
   const handleSave = async () => {
     try {
       if (editId) {
-        await axios.put(`http://localhost:5000/api/diagnoses/${editId}`, formData)
+        await axios.put(`${API_BASE_URL}/api/diagnoses/${editId}`, formData)
       } else {
-        await axios.post('http://localhost:5000/api/diagnoses', formData)
+        await axios.post(`${API_BASE_URL}/api/diagnoses`, formData)
       }
       setShow(false)
       resetForm()
@@ -51,7 +52,7 @@ const DiagnosisList = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure?')) return
     try {
-      await axios.delete(`http://localhost:5000/api/diagnoses/${id}`)
+      await axios.delete(`${API_BASE_URL}/api/diagnoses/${id}`)
       fetchDiagnoses()
     } catch (err) {
       console.error('❌ Error deleting:', err)

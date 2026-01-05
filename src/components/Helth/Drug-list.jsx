@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Button, Modal, Form, Dropdown } from 'react-bootstrap'
 import axios from 'axios'
+import { API_BASE_URL } from '../../api/axois'
 
 const DrugList = () => {
   const [show, setShow] = useState(false)
@@ -14,7 +15,7 @@ const DrugList = () => {
 
   const fetchDrugs = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/drugs_list')
+      const res = await axios.get(`${API_BASE_URL}/api/drugs_list`)
       setDrugs(res.data)
     } catch (err) {
       console.error(err)
@@ -35,9 +36,9 @@ const DrugList = () => {
     e.preventDefault()
     try {
       if (isEdit) {
-        await axios.put(`http://localhost:5000/api/drugs_list/${formData.id}`, formData)
+        await axios.put(`${API_BASE_URL}/api/drugs_list/${formData.id}`, formData)
       } else {
-        await axios.post('http://localhost:5000/api/drugs_list', formData)
+        await axios.post(`${API_BASE_URL}/api/drugs_list`, formData)
       }
       fetchDrugs()
       handleClose()
@@ -48,7 +49,7 @@ const DrugList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/drugs_list/${id}`)
+      await axios.delete(`${API_BASE_URL}/api/drugs_list/${id}`)
       fetchDrugs()
     } catch (err) {
       console.error(err)

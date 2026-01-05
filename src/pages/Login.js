@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import { AuthContext } from '../../src/context/AuthContext'
+import { API_BASE_URL } from '../api/axois'
 
 export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' })
@@ -13,7 +14,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', form)
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, form)
       localStorage.setItem('token', res.data.token)
       login(res.data.user)
       alert('✅ Login successful')

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { API_BASE_URL } from '../api/axois'
 
 export default function Register() {
   const navigate = useNavigate()
@@ -24,7 +25,7 @@ export default function Register() {
       Object.entries(form).forEach(([key, value]) => data.append(key, value))
       if (image) data.append('profileImage', image)
 
-      const res = await axios.post('http://localhost:5000/api/auth/register', data)
+      const res = await axios.post(`${API_BASE_URL}/api/auth/register`, data)
 
       alert('🎉 Register Successful! Please Login.')
       navigate('/login') // ✔️ Register وروسته Login ته

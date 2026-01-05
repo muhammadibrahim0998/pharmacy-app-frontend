@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Button, Modal, Form, Alert } from 'react-bootstrap'
 import axios from 'axios'
+import { API_BASE_URL } from '../../api/axois'
 
 export default function ClinicianList() {
   const [clinicians, setClinicians] = useState([])
@@ -9,7 +10,7 @@ export default function ClinicianList() {
   const [editingId, setEditingId] = useState(null)
   const [errors, setErrors] = useState({})
 
-  const API_URL = 'http://localhost:5000/api/clinician-list'
+  const API_URL = `${API_BASE_URL}/api/clinician-list`
 
   // ✅ Fetch all clinicians
   const fetchClinicians = async () => {

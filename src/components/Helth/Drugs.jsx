@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Button, Modal, Form, Dropdown, InputGroup, FormControl } from 'react-bootstrap'
 import axios from 'axios'
+import { API_BASE_URL } from '../../api/axois'
 
-const API_URL = 'http://localhost:5000/api/drugs'
+const API_URL = `${API_BASE_URL}/api/drugs`
 
 const Drugs = () => {
   const [show, setShow] = useState(false)

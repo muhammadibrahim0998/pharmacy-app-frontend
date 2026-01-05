@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CButton } from '@coreui/react'
+import { API_BASE_URL } from '../api/axois'
 
 const LogoutButton = () => {
   const navigate = useNavigate()
@@ -8,7 +9,7 @@ const LogoutButton = () => {
   const handleLogout = async () => {
     try {
       // که backend logout API لري، دلته یې call کولی شې
-      await fetch('http://localhost:5000/api/auth/logout', {
+      await fetch(`${API_BASE_URL}/api/auth/logout`, {
         method: 'POST',
       })
 

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Button, Dropdown, Modal, Form } from 'react-bootstrap'
 import axios from 'axios'
+import { API_BASE_URL } from '../../api/axois'
 
-const API_URL = 'http://localhost:5000/api/payers'
+const API_URL = `${API_BASE_URL}/api/payers`
 
 const PayersTable = () => {
   const [payers, setPayers] = useState([])

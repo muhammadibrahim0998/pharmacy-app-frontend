@@ -95,6 +95,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { API_BASE_URL } from '../api/axois'
 
 export default function Profile() {
   const [user, setUser] = useState({})
@@ -107,7 +108,7 @@ export default function Profile() {
     if (u) {
       setUser(u)
       if (u.profileImage) {
-        setPreview(`http://localhost:5000/uploads/${u.profileImage}`)
+        setPreview(`${API_BASE_URL}/uploads/${u.profileImage}`)
       }
     }
   }, [])
@@ -126,7 +127,7 @@ export default function Profile() {
     form.append('email', user.email)
     if (image) form.append('profileImage', image)
 
-    const res = await axios.put(`http://localhost:5000/api/auth/profile/${user.id}`, form, {
+    const res = await axios.put(`${API_BASE_URL}/api/auth/profile/${user.id}`, form, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',

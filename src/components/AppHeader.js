@@ -13,6 +13,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilMenu } from '@coreui/icons'
 import { useNavigate } from 'react-router-dom'
+import { API_BASE_URL } from '../api/axois'
 
 export default function AppHeader() {
   const dispatch = useDispatch()
@@ -23,7 +24,7 @@ export default function AppHeader() {
   const user = JSON.parse(localStorage.getItem('user'))
 
   const avatar = user?.profileImage
-    ? `http://localhost:5000/uploads/${user.profileImage}`
+    ? `${API_BASE_URL}/uploads/${user.profileImage}`
     : 'https://via.placeholder.com/120'
 
   const handleLogout = () => {

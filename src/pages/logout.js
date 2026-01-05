@@ -1,20 +1,8 @@
-// import { useEffect, useContext } from 'react'
-// import { useNavigate } from 'react-router-dom'
-// import { AuthContext } from '../../src/context/AuthContext'
 
-// export default function Logout() {
-//   const navigate = useNavigate()
-//   const { logout } = useContext(AuthContext)
-
-//   useEffect(() => {
-//     logout()
-//     navigate('/login')
-//   }, [])
-//   return null
-// }
 
 import { createContext, useState } from 'react'
 import axios from 'axios'
+import { API_BASE_URL } from '../api/axois'
 
 export const AuthContext = createContext()
 
@@ -24,7 +12,7 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password, navigate) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, {
         email,
         password,
       })
