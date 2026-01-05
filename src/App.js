@@ -5,7 +5,6 @@ import { AuthProvider } from './context/AuthContext'
 
 const Login = React.lazy(() => import('./pages/Login'))
 const Register = React.lazy(() => import('./pages/Register'))
-const Logout = React.lazy(() => import('./pages/Logout'))
 
 const Profile = React.lazy(() => import('./pages/Profile'))
 const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard'))
